@@ -136,11 +136,12 @@ document.addEventListener('DOMContentLoaded', () => {
     // ================================================
     // Navbar — scroll behavior & active link
     // ================================================
-    const navbar = document.getElementById('navbar');
+    const navbar     = document.getElementById('navbar');
+    const backToTop  = document.getElementById('back-to-top');
 
     const handleNavScroll = () => {
         navbar.classList.toggle('scrolled', window.scrollY > 60);
-        backToTop.classList.toggle('visible', window.scrollY > 400);
+        if (backToTop) backToTop.classList.toggle('visible', window.scrollY > 400);
     };
     window.addEventListener('scroll', handleNavScroll, { passive: true });
     handleNavScroll();
@@ -228,7 +229,6 @@ document.addEventListener('DOMContentLoaded', () => {
     // ================================================
     // Back to top
     // ================================================
-    const backToTop = document.getElementById('back-to-top');
     backToTop.addEventListener('click', () => {
         window.scrollTo({ top: 0, behavior: 'smooth' });
     });
