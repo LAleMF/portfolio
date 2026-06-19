@@ -53,6 +53,8 @@ body {
     color: var(--text);
     line-height: 1.65;
     overflow-x: hidden;
+    overflow-wrap: break-word;
+    word-break: break-word;
 }
 
 a { color: inherit; text-decoration: none; }
@@ -449,6 +451,9 @@ strong { color: var(--text); font-weight: 600; }
     gap: 4rem;
     align-items: start;
 }
+/* min-width:0 evita que el contenido nowrap (terminal) ensanche el grid */
+.about-bio,
+.about-right { min-width: 0; }
 
 .about-bio p {
     color: var(--text-secondary);
@@ -610,7 +615,7 @@ strong { color: var(--text); font-weight: 600; }
 .project-card--reverse .project-body { order: 2; }
 .project-card--reverse .project-visual { order: 1; }
 
-.project-body, .project-visual { position: relative; z-index: 1; }
+.project-body, .project-visual { position: relative; z-index: 1; min-width: 0; }
 
 .project-meta-row {
     display: flex;
@@ -1016,6 +1021,7 @@ strong { color: var(--text); font-weight: 600; }
     border-radius: var(--radius);
     transition: var(--transition);
     flex: 1;
+    min-width: 0;
 }
 .tl-item:hover .tl-content {
     border-color: rgba(139,92,246,0.3);
@@ -1248,29 +1254,46 @@ strong { color: var(--text); font-weight: 600; }
 @media (max-width: 640px) {
     .section { padding: 80px 0; }
 
-    /* Evitar scroll horizontal */
-    *, *::before, *::after { max-width: 100%; }
+    /* ── Layout base ─────────────────────────────── */
+    .container { width: 100%; padding-inline: 1.25rem; }
 
-    .hero-content    { padding: 5rem 1rem 3rem; width: 100%; }
-    .hero-name       { font-size: clamp(2.4rem, 14vw, 4rem); }
-    .hero-role       { font-size: 0.78rem; overflow-x: hidden; white-space: nowrap; text-overflow: ellipsis; max-width: 100%; }
+    /* ── Texto: nunca se sale del contenedor ──────── */
+    p, h1, h2, h3, span, a, li {
+        overflow-wrap: break-word;
+        word-break:    break-word;
+        max-width:     100%;
+    }
+
+    /* ── Hero ────────────────────────────────────── */
+    .hero-content    { padding: 5rem 1.25rem 3rem; width: 100%; box-sizing: border-box; }
+    .hero-name       { font-size: clamp(2.4rem, 13vw, 4rem); }
+    .hero-role       { font-size: 0.8rem; }
     .terminal-prefix { display: none; }
 
-    .terminal-box    { overflow-x: auto; }
+    /* ── About ───────────────────────────────────── */
+    .about-layout    { grid-template-columns: 1fr; gap: 2rem; }
+    .about-bio       { width: 100%; }
+    .about-bio p     { overflow-wrap: break-word; word-break: break-word; }
+    .about-info-grid { grid-template-columns: 1fr 1fr; }
+    .about-right     { width: 100%; }
+
+    /* ── Terminal ────────────────────────────────── */
+    .terminal-box    { overflow: hidden; width: 100%; }
     .terminal-body   { font-size: 0.72rem; padding: 1rem; overflow-x: auto; }
     .t-line          { white-space: nowrap; }
 
-    .about-layout    { grid-template-columns: 1fr; }
-    .about-info-grid { grid-template-columns: 1fr; }
-
+    /* ── Skills ──────────────────────────────────── */
     .skill-cloud     { gap: 0.4rem; }
     .skill-tag       { font-size: 0.72rem; }
 
+    /* ── Timeline ────────────────────────────────── */
     .timeline        { padding-left: 1.25rem; }
-    .tl-content      { padding: 1rem 1.25rem; }
+    .tl-content      { padding: 1rem 1.25rem; width: 100%; }
+    .tl-content p, .tl-content h3 { overflow-wrap: break-word; }
 
-    .contact-email-cta { font-size: 0.72rem; padding: 0.8rem 1rem; word-break: break-all; }
-    .contact-socials   { gap: 0.6rem; }
+    /* ── Contacto ────────────────────────────────── */
+    .contact-email-cta  { font-size: 0.72rem; padding: 0.8rem 1rem; word-break: break-all; }
+    .contact-socials    { gap: 0.6rem; }
     .contact-social-btn { font-size: 0.78rem; padding: 0.55rem 1rem; }
 
     /* Navbar siempre visible en móvil (fondo desde el inicio) */
