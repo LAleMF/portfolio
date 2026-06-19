@@ -38,6 +38,7 @@ html {
     scroll-behavior: smooth;
     scrollbar-width: thin;
     scrollbar-color: var(--purple) var(--bg-surface);
+    overflow-x: hidden;
 }
 
 ::-webkit-scrollbar       { width: 5px; }
@@ -1246,6 +1247,31 @@ strong { color: var(--text); font-weight: 600; }
 /* Mobile */
 @media (max-width: 640px) {
     .section { padding: 80px 0; }
+
+    /* Evitar scroll horizontal */
+    *, *::before, *::after { max-width: 100%; }
+
+    .hero-content    { padding: 5rem 1rem 3rem; width: 100%; }
+    .hero-name       { font-size: clamp(2.4rem, 14vw, 4rem); }
+    .hero-role       { font-size: 0.78rem; overflow-x: hidden; white-space: nowrap; text-overflow: ellipsis; max-width: 100%; }
+    .terminal-prefix { display: none; }
+
+    .terminal-box    { overflow-x: auto; }
+    .terminal-body   { font-size: 0.72rem; padding: 1rem; overflow-x: auto; }
+    .t-line          { white-space: nowrap; }
+
+    .about-layout    { grid-template-columns: 1fr; }
+    .about-info-grid { grid-template-columns: 1fr; }
+
+    .skill-cloud     { gap: 0.4rem; }
+    .skill-tag       { font-size: 0.72rem; }
+
+    .timeline        { padding-left: 1.25rem; }
+    .tl-content      { padding: 1rem 1.25rem; }
+
+    .contact-email-cta { font-size: 0.72rem; padding: 0.8rem 1rem; word-break: break-all; }
+    .contact-socials   { gap: 0.6rem; }
+    .contact-social-btn { font-size: 0.78rem; padding: 0.55rem 1rem; }
 
     /* Navbar siempre visible en móvil (fondo desde el inicio) */
     .navbar {
