@@ -210,7 +210,7 @@ strong { color: var(--text); font-weight: 600; }
     display: block;
     width: 24px;
     height: 2px;
-    background: var(--text-secondary);
+    background: var(--text);
     border-radius: 2px;
     transition: var(--transition);
 }
@@ -1247,6 +1247,20 @@ strong { color: var(--text); font-weight: 600; }
 @media (max-width: 640px) {
     .section { padding: 80px 0; }
 
+    /* Navbar siempre visible en móvil (fondo desde el inicio) */
+    .navbar {
+        background: rgba(7, 7, 15, 0.95);
+        backdrop-filter: blur(20px);
+        -webkit-backdrop-filter: blur(20px);
+        border-bottom: 1px solid var(--border);
+    }
+
+    .nav-hamburger {
+        display: flex;
+        z-index: 1001;
+        position: relative;
+    }
+
     .nav-links {
         position: fixed;
         top: 68px; left: 0; right: 0;
@@ -1272,9 +1286,6 @@ strong { color: var(--text); font-weight: 600; }
     .nav-link { display: block; padding: 0.8rem 2rem; }
     .nav-cv-btn { display: inline-flex; margin: 0.5rem auto; }
 
-    .nav-hamburger {
-        display: flex;
-    }
     .nav-hamburger.open span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
     .nav-hamburger.open span:nth-child(2) { opacity: 0; }
     .nav-hamburger.open span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
